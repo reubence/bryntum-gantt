@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@bryntum/gantt": "npm:@bryntum/gantt-trial@^5.3.6",
     "@bryntum/gantt-react": "^5.3.6",
     "@prisma/client": "^4.15.0",
     "@types/node": "18.14.2",
