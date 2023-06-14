@@ -1,6 +1,27 @@
+import { useRef, LegacyRef } from "react";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+import { BryntumGantt } from "@bryntum/gantt-react";
 
-export default function Home() {
+const GanttDynamic = dynamic(() => import("@/components/Gantt"), {
+  ssr: false,
+  loading: () => {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+        }}
+      >
+        <p>Loading...</p>
+      </div>
+    );
+  },
+});
+export default function BryntumGanttPage() {
+  const ganttRef = useRef() as LegacyRef<BryntumGantt> | undefined;
   return (
     <>
       <Head>
@@ -9,7 +30,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>Index route</div>
+      <GanttDynamic ganttRef={ganttRef} />
     </>
-  )
+  );
 }
